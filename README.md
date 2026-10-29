@@ -3,6 +3,9 @@
 > **⚠️ Disclaimer: Unofficial Portfolio Concept & Demo**  
 > This project is an independent frontend engineering and UI/UX portfolio concept. It is **not** an official commercial application and is **not affiliated with or endorsed by any real business entity**. All product data, pricing, locations, contact numbers, and forms are illustrative and fictional. No real transactions, bookings, or inquiries are processed.
 
+🔗 **Live Website**: [https://bubble-hope.vercel.app](https://bubble-hope.vercel.app)  
+📦 **Repository**: [https://github.com/safenga7/bubble-hope](https://github.com/safenga7/bubble-hope)
+
 ---
 
 ## ✨ Overview
