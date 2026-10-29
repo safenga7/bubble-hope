@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Star, Flame, Plus, Check, SlidersHorizontal } from "lucide-react";
+import { Star, Flame, Plus, Check, SlidersHorizontal, Sparkles } from "lucide-react";
 import { MENU_ITEMS, type MenuItem } from "@/lib/data";
 import { useStore } from "@/lib/store";
 import SafeImage from "./SafeImage";
@@ -44,7 +44,10 @@ export default function MenuGrid() {
   return (
     <section aria-labelledby="fav-title" className="rounded-5xl border border-white/80 bg-white/60 p-5 shadow-card sm:p-8">
       <div className="flex items-center justify-between">
-        <h2 id="fav-title" className="font-display text-2xl font-extrabold">{t("popularBrews")}</h2>
+        <div>
+          <h2 id="fav-title" className="font-display text-2xl font-extrabold">{t("popularBrews")}</h2>
+          <p className="mt-0.5 text-xs text-amber-deep/50">{t("conceptPricing")}</p>
+        </div>
         <span className="grid h-10 w-10 place-items-center rounded-full bg-porcelain-100" aria-hidden><SlidersHorizontal size={16} /></span>
       </div>
       <div className="mt-5 grid grid-cols-2 gap-4">

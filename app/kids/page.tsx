@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PartyPopper, Palette, IceCreamCone, Shield, Star, ChevronDown, Check, Sparkles, Heart, Users, Calendar } from "lucide-react";
+import { PartyPopper, Palette, IceCreamCone, Shield, Star, Check, Sparkles, Heart, Users, Calendar, Info } from "lucide-react";
 import SafeImage from "@/components/SafeImage";
 import { IMAGES } from "@/lib/images";
 import { useStore } from "@/lib/store";
@@ -25,21 +25,20 @@ function PackageDescKey(id: PackageId): "packageBasicDesc" | "packagePremiumDesc
 }
 
 export default function KidsPage() {
-  const { t, lang } = useStore();
+  const { t } = useStore();
   const [selectedPkg, setSelectedPkg] = useState<PackageId | "">("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 4000);
+    setTimeout(() => setFormSubmitted(false), 5000);
   };
 
   return (
     <div className="pb-20 pt-24">
       {/* Hero */}
-      <section className="relative isolate overflow-hidden px-4 pb-20 pt-8 sm:px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute -start-32 top-10 h-96 w-96 rounded-full bg-taro/25 blur-3xl" />
           <div className="absolute -end-24 top-1/3 h-[28rem] w-[28rem] rounded-full bg-mango/15 blur-3xl" />
@@ -114,10 +113,13 @@ export default function KidsPage() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center">
           <h2 className="font-display text-3xl font-extrabold sm:text-4xl">{t("kidsPartyTitle")}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-amber-deep/70">{t("kidsPartySub")}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-amber-deep/70 sm:text-base">{t("kidsPartySub")}</p>
+          <span className="mt-2 inline-block rounded-full bg-porcelain-200 px-3 py-1 text-xs font-semibold text-amber-deep/60">
+            {t("packageConceptNote")}
+          </span>
         </motion.div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PACKAGES.map((pkg, i) => {
             const nameKey = PackageNameKey(pkg.id);
             const descKey = PackageDescKey(pkg.id);
@@ -169,10 +171,13 @@ export default function KidsPage() {
         </motion.div>
       </section>
 
-      {/* Testimonials */}
+      {/* Sample Community Feedback / Testimonials */}
       <section className="mx-auto mt-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-center font-display text-3xl font-extrabold">{t("testimonialsTitle")}</motion.h2>
+        <div className="text-center">
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="font-display text-3xl font-extrabold">{t("testimonialsTitle")}</motion.h2>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-amber-deep/65">{t("testimonialsSub")}</p>
+        </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {([
             { text: t("testimonial1"), author: t("testimonial1Author"), color: "#C7A9E5" },
@@ -181,12 +186,15 @@ export default function KidsPage() {
           ]).map((test, i) => (
             <motion.blockquote key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }} viewport={{ once: true }}
-              className="rounded-4xl border border-white/80 bg-white/60 p-6 shadow-card">
+              className="relative rounded-4xl border border-white/80 bg-white/60 p-6 shadow-card">
+              <span className="absolute end-4 top-4 rounded-full bg-porcelain-100 px-2.5 py-0.5 text-[11px] font-semibold text-amber-deep/50">
+                {t("testimonialTag")}
+              </span>
               <div className="mb-4 flex gap-1">
                 {[...Array(5)].map((_, j) => <Star key={j} size={16} className="fill-mango text-mango" />)}
               </div>
               <p className="text-sm leading-relaxed text-amber-deep/80">&ldquo;{test.text}&rdquo;</p>
-              <div className="mt-4 flex items-center gap-3">
+              <div className="mt-5 flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full" style={{ background: `linear-gradient(135deg, ${test.color}40, ${test.color})` }} />
                 <div>
                   <p className="text-sm font-bold">{test.author}</p>
@@ -204,9 +212,10 @@ export default function KidsPage() {
       <section id="booking" className="mx-auto mt-20 max-w-3xl scroll-mt-28 px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="rounded-5xl border border-white/80 bg-white/60 p-6 shadow-card sm:p-10">
-          <div className="mb-8 text-center">
+          <div className="mb-6 text-center">
             <Calendar size={32} className="mx-auto text-taro" />
-            <h2 className="mt-4 font-display text-2xl font-extrabold sm:text-3xl">{t("bookingTitle")}</h2>
+            <h2 className="mt-3 font-display text-2xl font-extrabold sm:text-3xl">{t("bookingTitle")}</h2>
+            <p className="mt-1 text-xs text-amber-deep/60">{t("bookingSub")}</p>
           </div>
 
           <AnimatePresence mode="wait">

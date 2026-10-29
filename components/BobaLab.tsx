@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, RotateCcw, ShoppingBag } from "lucide-react";
+import { Check, RotateCcw, ShoppingBag, Sparkles } from "lucide-react";
 import { ICE_STEPS, SWEETNESS_STEPS, TEA_BASES, TOPPINGS } from "@/lib/data";
 import { useStore } from "@/lib/store";
 import CupPreview from "./CupPreview";
@@ -39,8 +39,10 @@ export default function BobaLab() {
     <section id="boba-lab" aria-labelledby="lab-title" className="scroll-mt-28 rounded-5xl border border-white/80 bg-white/60 p-5 shadow-card sm:p-8">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-amber">{t("bobaLab")}</p>
-          <h1 id="lab-title" className="font-display text-3xl font-extrabold sm:text-4xl">{t("craftTitle")}</h1>
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-soft/60 px-3 py-1 text-xs font-bold text-amber">
+            <Sparkles size={12} /> {t("bobaLab")}
+          </div>
+          <h1 id="lab-title" className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">{t("craftTitle")}</h1>
         </div>
         <button onClick={reset} className="btn-ghost !px-4 !py-2 text-sm"><RotateCcw size={14} /> {t("resetBtn")}</button>
       </div>
@@ -97,7 +99,7 @@ export default function BobaLab() {
           <div className="grid w-full place-items-center rounded-4xl p-4" style={{ background: `linear-gradient(160deg, ${base.tint}, #FAF8F5)` }}>
             <div className="h-80 w-full"><CupPreview base={base} toppings={toppings} sweetness={sweet} ice={ice} /></div>
           </div>
-          <p className="text-center text-sm text-amber-deep/70">{t("cupUpdates")}</p>
+          <p className="text-center text-xs text-amber-deep/60">{t("cupUpdates")}</p>
           <button onClick={addToBag} className="btn-primary w-full !bg-matcha hover:!bg-matcha/85" aria-live="polite">
             <AnimatePresence mode="wait" initial={false}>
               <motion.span key={added ? "ok" : "add"} initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -12, opacity: 0 }} className="flex items-center gap-2">
@@ -105,6 +107,7 @@ export default function BobaLab() {
               </motion.span>
             </AnimatePresence>
           </button>
+          <span className="text-center text-[11px] text-amber-deep/50">{t("conceptPricing")}</span>
         </div>
       </div>
       <StickyCartBar />

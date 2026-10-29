@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ShoppingBag, Languages } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
@@ -12,6 +12,23 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { t, lang, toggleLang, count, openCart } = useStore();
+
+  // Close mobile drawer on Escape and lock body scroll
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    if (open) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", onKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   return (
     <header className="fixed inset-x-0 top-3 z-40 px-3 sm:px-6">
@@ -60,7 +77,7 @@ export default function Navbar() {
           </Link>
 
           <button className="grid h-11 w-11 place-items-center rounded-full bg-amber-deep text-white lg:hidden"
-            onClick={() => setOpen(true)} aria-label={t("openMenu")} aria-expanded={open}>
+            onClick={() => setOpen(true)} aria-label={t("openMenu")} aria-expanded={open} aria-controls="mobile-nav">
             <Menu size={20} />
           </button>
         </div>
@@ -71,7 +88,7 @@ export default function Navbar() {
           <>
             <motion.div className="fixed inset-0 z-40 bg-amber-deep/40 backdrop-blur-sm"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} />
-            <motion.aside role="dialog" aria-modal="true" aria-label="Menu"
+            <motion.aside id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu"
               className="fixed inset-y-0 end-0 z-50 flex w-[82%] max-w-sm flex-col bg-porcelain p-6 shadow-card"
               initial={{ x: lang === "ar" ? "-100%" : "100%" }} animate={{ x: 0 }} exit={{ x: lang === "ar" ? "-100%" : "100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 34 }}>

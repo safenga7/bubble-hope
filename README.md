@@ -4,7 +4,7 @@
 > This project is an independent frontend engineering and UI/UX portfolio concept. It is **not** an official commercial application and is **not affiliated with or endorsed by any real business entity**. All product data, pricing, locations, contact numbers, and forms are illustrative and fictional. No real transactions, bookings, or inquiries are processed.
 
 🔗 **Live Website**: [https://bubble-hope.vercel.app](https://bubble-hope.vercel.app)  
-📦 **Repository**: [https://github.com/safenga7/bubble-hope](https://github.com/safenga7/bubble-hope)
+📦 **GitHub Repository**: [https://github.com/safenga7/bubble-hope](https://github.com/safenga7/bubble-hope)
 
 ---
 
@@ -31,14 +31,13 @@
 ### 🎈 3. Kids Area & Birthday Party Hub (`/kids`)
 - **Soft-Play & Workshops Showcase**: Dedicated zones for physical activity, sensory play, and creative arts.
 - **Party Packages**: Tiered party offerings (*Bubble Fun*, *Boba Blast*, *Pop Star Party*) with per-child pricing breakdowns.
-- **Interactive Demo Booking Widget**: Date selection, guest count, package selector, and demo confirmation feedback.
-- **Parent Testimonials & Safety Highlights**: Verified safety equipment, certified staff, and allergy-aware practices.
+- **Interactive Demo Booking Widget**: Date selection, guest count, package selector, and simulated booking confirmation feedback.
+- **Sample Community Reviews & Concept Safety Standards**: Clear illustrative feedback and safety design specifications.
 
-### 📍 4. Multi-Branch Store Finder (`/locations`)
+### 📍 4. Multi-Branch Explorer & District Guide (`/locations`)
 - **Branch Switcher**: Interactive cards for Hadayek Al-Ahram (24/7 flagship), Sheikh Zayed, and Heliopolis (Korba).
-- **Branch Details**: Operating schedules, addresses, phone contacts, amenities (Wi-Fi, parking, playground, outdoor patio, delivery).
-- **Map & Directions**: Integrated map placeholder with external direction links.
-- **Community & Expansion**: Inquiry forms for the **Barista Academy** and **Franchise Opportunities**.
+- **District Arrival & Accessibility Guide**: Real-world transit guidance, neighborhood character tags, address clipboard copy, and direct Google Maps neighborhood exploration links.
+- **Community & Expansion**: Interactive demo inquiry forms for the **Barista Academy** and **Franchise Opportunities**.
 
 ### 🌐 5. Bilingual & Bidirectional (English / Arabic RTL)
 - Seamless language toggle across the entire application without page reloads.
@@ -47,7 +46,7 @@
 ### 🛍️ 6. Persistent Cart & Mobile Slide-Out
 - Global reactive store managing cart items, quantities, and pricing.
 - Local storage persistence for seamless returning visitor experiences.
-- Animated sticky checkout bar and accessible glassmorphic slide-out drawer.
+- Accessible slide-out drawer with Escape key handling, body-scroll lock, and an in-drawer simulated checkout celebration state.
 
 ---
 
@@ -70,14 +69,15 @@ bubble-hope/
 │   ├── globals.css         # Custom utilities, CSS variables & theme styling
 │   ├── layout.tsx          # Root layout with fonts, metadata, and StoreProvider
 │   ├── loading.tsx         # Global loading skeleton
+│   ├── error.tsx           # Production error boundary handler
 │   ├── not-found.tsx       # Branded 404 handler
 │   ├── page.tsx            # Home page (Hero section)
 │   ├── menu/               # Boba Lab & Popular Brews
 │   ├── kids/               # Kids Area, Party Packages & Booking
-│   └── locations/          # Branches, Academy & Franchise
+│   └── locations/          # Branches, District Guide, Academy & Franchise
 ├── components/
 │   ├── BobaLab.tsx         # Drink customization engine
-│   ├── CartDrawer.tsx      # Slide-out bag drawer with quantity controls
+│   ├── CartDrawer.tsx      # Slide-out bag drawer with simulated checkout
 │   ├── CupPreview.tsx      # Dynamic SVG boba cup renderer
 │   ├── Footer.tsx          # Responsive footer with demo disclaimers
 │   ├── HeroSection.tsx     # Landing page hero with animated glassmorphism

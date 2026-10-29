@@ -27,7 +27,8 @@ export default function HeroSection() {
           className="relative grid items-center gap-6 lg:grid-cols-[1fr_minmax(300px,420px)_1fr]">
 
           <motion.h1 variants={rise} className="font-display text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl lg:text-end">
-            {t("heroA")}
+            <span className="sr-only">{t("heroA")} {t("heroB")}</span>
+            <span aria-hidden="true">{t("heroA")}</span>
           </motion.h1>
 
           {/* Cup showcase */}
